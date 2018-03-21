@@ -31,6 +31,7 @@ function doPost(e) {
   if(lastReportTime===0) lastReportTime = reportTime; // If this is the first report, set last report time to now
   var lastCounter1 = Number(scriptProperties.getProperty(deviceId + "_lastCounter1"));
   var counter1 = Number(parametersObject["Pulse_count_1"]);
+  if(lastCounter1>counter1) lastCounter1 = 0; // The device has been re-set. Set last counter to zero.
   var isRunning1 = counter1 > lastCounter1;
   var timeSinceLastReport = (reportTime - lastReportTime);
   
